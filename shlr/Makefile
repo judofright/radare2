@@ -13,6 +13,8 @@ else
 CS_RELEASE=1
 endif
 
+CS_NEXT=1
+
 CAPSTONE_CFLAGS?=-g
 # CAPSTONE_MAKEFLAGS?=CAPSTONE_ARCHS="arm aarch64"
 
@@ -32,11 +34,16 @@ else
 CS_TAR=
 CS_URL=$(GIT_PREFIX)github.com/aquynh/capstone.git
 CS_UPD=20190213
+ifeq ($(CS_NEXT),1)
+CS_TIP=25b6704978ed969c814664f799a7bdcf5bdfaf44
+CS_BRA=next
+else
+CS_TIP=472845db9c2666ab66b3f517dda21f2b026a06c1
+CS_BRA=master
+endif
 # NOTE: when you update CS_TIP or CS_BRA, also update them in shlr/meson.build
 #CS_BRA=next
 #CS_TIP=38607453f3de85733f9604dffc27778db3b53766
-CS_TIP=472845db9c2666ab66b3f517dda21f2b026a06c1
-CS_BRA=master
 # REVERT THIS COMMIT BECAUSE ITS WRONG
 CS_REV=
 CS_PATCHES=1
